@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validação de Dados</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
+        input, button { margin: 10px; padding: 8px; }
+        #resultado { font-size: 18px; margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <h2>Digite seus dados:</h2>
+    <label>Nome: <input type="text" id="nome"></label><br>
+    <label>Idade: <input type="number" id="idade"></label><br>
+    <label>Altura (m): <input type="number" step="0.01" id="altura"></label><br>
+    <label>É estudante? <input type="checkbox" id="estudante"></label><br>
+
+    <button onclick="validarDados()">Validar</button>
+
+    <div id="resultado"></div>
+
+    <script>
+        function validarDados() {
+            let nome = document.getElementById("nome").value;
+            let idade = parseInt(document.getElementById("idade").value);
+            let altura = parseFloat(document.getElementById("altura").value);
+            let estudante = document.getElementById("estudante").checked;
+
+            let erros = [];
+
+            if (nome !== "juan") erros.push("Nome incorreto!");
+            if (idade !== 25) erros.push("Idade incorreta!");
+            if (altura !== 1.75) erros.push("Altura incorreta!");
+            if (!estudante) erros.push("Não é estudante!");
+
+            let resultado = document.getElementById("resultado");
+            if (erros.length > 0) {
+                resultado.innerHTML = erros.join("<br>") + "<br><b>DADOS INCORRETOS!</b>";
+                resultado.style.color = "red";
+            } else {
+                resultado.innerHTML = "<b>TUDO CORRETO!</b>";
+                resultado.style.color = "green";
+            }
+        }
+    </script>
+
+</body>
+</html>
